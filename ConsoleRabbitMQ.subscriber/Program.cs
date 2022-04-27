@@ -22,7 +22,9 @@ namespace ConsoleRabbitMQ.subscriber
 
             var consumer = new EventingBasicConsumer(channel);
 
-            var queueName = "direct-queue-Critical";
+            var queueName = channel.QueueDeclare().QueueName;
+            var routeKey = "*.Error.*"; //ortası error olan route bilgisini dinle
+            channel.QueueBind(queueName, "logs-topic", routeKey);
 
             channel.BasicConsume(queueName, false, consumer);
 
@@ -35,8 +37,6 @@ namespace ConsoleRabbitMQ.subscriber
                 Thread.Sleep(1500);
 
                 Console.WriteLine("Gelen mesaj :" + message);
-
-                //File.AppendAllText("log-critical.txt", message + "\n");
 
                 channel.BasicAck(e.DeliveryTag, false);
             };
