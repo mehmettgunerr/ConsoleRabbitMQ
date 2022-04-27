@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRabbitMQ.publisher",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRabbitMQ.subscriber", "ConsoleRabbitMQ.subscriber\ConsoleRabbitMQ.subscriber.csproj", "{700F9CC3-53B0-42F2-8F2B-56A80B6D140D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{0C9ED065-1482-48DC-8644-C878AB027541}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{0C9ED065-1482-48DC-8644-C878AB027541}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRabbitMQ.Watermark", "WebRabbitMQ.Watermark\WebRabbitMQ.Watermark.csproj", "{862ED2D8-7A40-476D-861E-8B428D73BAB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{0C9ED065-1482-48DC-8644-C878AB027541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C9ED065-1482-48DC-8644-C878AB027541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C9ED065-1482-48DC-8644-C878AB027541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{862ED2D8-7A40-476D-861E-8B428D73BAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{862ED2D8-7A40-476D-861E-8B428D73BAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{862ED2D8-7A40-476D-861E-8B428D73BAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{862ED2D8-7A40-476D-861E-8B428D73BAB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
