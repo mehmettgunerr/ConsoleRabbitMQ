@@ -1,6 +1,7 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -17,22 +18,13 @@ namespace ConsoleRabbitMQ.subscriber
 
             var channel = connection.CreateModel();
 
-            var randomQueueName = channel.QueueDeclare().QueueName;
-
-            //channel.QueueDeclare("sabit-queue", true, false, false); -> kuyruk sabit oluşurdu 
-
-            channel.QueueBind(randomQueueName, "logs-fanout", "", null); // uygulama down olduğunda kuyrukta silinir.
-            //eğer kuyruk declare etseydik uygulama kapanırsa kuyruk yinede kalırdı
-
-            //channel.QueueDeclare("hello-queue", true, false, false);
-
-            channel.BasicQos(0, 1, false); //sınırsız boyut, aynı anda 5 adet mesaj, eğer false olursa her consumer'a 5 adet yollar , true olursa 5 adet mesajı dinleyenlere bölerek max 5 adet mesaj dağıtılcak gibi davranır.
+            channel.BasicQos(0, 1, false);
 
             var consumer = new EventingBasicConsumer(channel);
 
-            // channel.BasicConsume("hello-queue", true, consumer); ->mesaj işlenince direkt silinir.
+            var queueName = "direct-queue-Critical";
 
-            channel.BasicConsume(randomQueueName, false, consumer);
+            channel.BasicConsume(queueName, false, consumer);
 
             Console.WriteLine("Loglar dinleniyor..");
 
@@ -44,7 +36,9 @@ namespace ConsoleRabbitMQ.subscriber
 
                 Console.WriteLine("Gelen mesaj :" + message);
 
-                channel.BasicAck(e.DeliveryTag, false); /* kuyruktan sil */
+                //File.AppendAllText("log-critical.txt", message + "\n");
+
+                channel.BasicAck(e.DeliveryTag, false);
             };
 
             Console.ReadLine();
